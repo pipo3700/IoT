@@ -2,6 +2,7 @@ package dispositivo.awsiotthing;
 
 import java.util.UUID;
 
+import dispositivo.componentes.Bollard;
 import dispositivo.utils.MySimpleLogger;
 
 import com.amazonaws.services.iot.client.AWSIotException;
@@ -21,7 +22,7 @@ public class AWSIoTThingStarter {
     protected static boolean subscriber = true;
     protected static String topic = "parking/";
 
-    public AWSIoTThingStarter(){
+    public AWSIoTThingStarter(Bollard bollard){
         AWSIotMqttClient client = initClient();
         // CONNECT CLIENT TO AWS IOT MQTT
         // optional parameters can be set before connect()
@@ -36,7 +37,7 @@ public class AWSIoTThingStarter {
         }
         // SUBSCRIBE to a TOPIC
         if ( subscriber ) {
-            subscribe(client, topic, qos);
+            subscribe(client, topic, qos, bollard);
         }
     }
 
@@ -50,8 +51,8 @@ public class AWSIoTThingStarter {
         return client;
     }
 
-    public static void subscribe(AWSIotMqttClient client, String topic, AWSIotQos qos) {
-        AWSIoT_TopicHandler theTopic = new AWSIoT_TopicHandler(topic, qos);
+    public static void subscribe(AWSIotMqttClient client, String topic, AWSIotQos qos, Bollard bollard) {
+        AWSIoT_TopicHandler theTopic = new AWSIoT_TopicHandler(topic, qos, bollard);
         try {
             client.subscribe(theTopic);
             MySimpleLogger.info("my-aws-iot-thing", "... SUBSCRIBED to TOPIC: " + topic);
