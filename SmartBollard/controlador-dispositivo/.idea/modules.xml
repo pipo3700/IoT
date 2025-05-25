@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/controlador-dispositivo.iml" filepath="$PROJECT_DIR$/controlador-dispositivo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dispositivo.iml" filepath="$PROJECT_DIR$/dispositivo.iml" />
+    </modules>
+  </component>
+</project>
