@@ -8,6 +8,7 @@ public interface Configuracion {
 //	public static final String TOPIC_BASE = "es/upv/inf/muiinf/ina/";
 	public static final String TOPIC_BASE = "";
 	public static final String TOPIC_REGISTRO =  Configuracion.TOPIC_BASE + "gestion/dispositivos";
+	public static final String TOPIC_TRAFFIC = "es/upv/pros/tatami/smartcities/traffic/PTPaterna/road/R5s1/traffic";
 
 
 }

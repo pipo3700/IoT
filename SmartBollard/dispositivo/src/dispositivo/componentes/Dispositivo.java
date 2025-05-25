@@ -113,6 +113,7 @@ public class Dispositivo implements IDispositivo {
 		return this;
 	}
 
+
 	@Override
 	public IDispositivo detener() {
 		this.registrador.desregistrar();
