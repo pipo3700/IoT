@@ -1,9 +1,11 @@
 package dispositivo.iniciador;
 
 import dispositivo.awsiotthing.AWSIoTThingStarter;
+import dispositivo.componentes.Bollard;
 import dispositivo.componentes.Dispositivo;
 import dispositivo.componentes.Funcion;
 import dispositivo.interfaces.FuncionStatus;
+import dispositivo.interfaces.IBollard;
 import dispositivo.interfaces.IDispositivo;
 import dispositivo.interfaces.IFuncion;
 
@@ -38,6 +40,8 @@ public class DispositivoIniciador {
 		// Arrancamos el dispositivo
 		d.iniciar();
 
+		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker);
+		bollard.iniciarBollard();
 
 		new AWSIoTThingStarter();
 

@@ -127,8 +127,7 @@ public class Dispositivo_RegistradorMQTT implements MqttCallback {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void registrar() {
 		
 		if ( this.myClient == null || !this.myClient.isConnected() ) {
