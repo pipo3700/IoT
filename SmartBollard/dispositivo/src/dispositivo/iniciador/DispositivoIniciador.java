@@ -35,15 +35,18 @@ public class DispositivoIniciador {
 		IFuncion f2 = Funcion.build("f2", FuncionStatus.OFF);
 		d.addFuncion(f2);
 
-		IFuncion f3 = Funcion.build("f3", FuncionStatus.BLINK);
+		IFuncion f3 = Funcion.build("f3", FuncionStatus.ON);
 		d.addFuncion(f3);
 		// Arrancamos el dispositivo
 		d.iniciar();
 
 		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker);
+		bollard.addFuncion(f1); //luz roja
+		bollard.addFuncion(f2); //luz amarilla
+		bollard.addFuncion(f3); //luz verde
 		bollard.iniciarBollard();
 
-		new AWSIoTThingStarter();
+		new AWSIoTThingStarter(bollard);
 
 	}
 

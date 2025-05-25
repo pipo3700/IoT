@@ -30,7 +30,7 @@ public class FuncionPi4Jv2 extends Funcion implements ISignallable {
 		return f;
 	}
 
-	
+	//No tocar, tiene la lógica de apagar, encender el pin
 	protected FuncionPi4Jv2(String id, int gpioPin, FuncionStatus initialStatus, Context pi4jContext) {
 		super(id, initialStatus);
 		this.gpioPin=gpioPin;

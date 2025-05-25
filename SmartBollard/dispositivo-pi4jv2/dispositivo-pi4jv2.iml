@@ -8,5 +8,21 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="dispositivo" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/slf4j-simple.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/pi4j-plugin-raspberrypi.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/slf4j-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/pi4j-plugin-pigpio.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/pi4j-library-pigpio.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/pi4j-core.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/pi4j-core-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
