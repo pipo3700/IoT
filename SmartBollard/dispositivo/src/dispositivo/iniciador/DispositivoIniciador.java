@@ -1,10 +1,13 @@
 package dispositivo.iniciador;
 
+import dispositivo.awsiotthing.AWSIoTThingStarter;
 import dispositivo.componentes.Dispositivo;
 import dispositivo.componentes.Funcion;
 import dispositivo.interfaces.FuncionStatus;
 import dispositivo.interfaces.IDispositivo;
 import dispositivo.interfaces.IFuncion;
+
+
 
 public class DispositivoIniciador {
 
@@ -20,13 +23,13 @@ public class DispositivoIniciador {
 		String deviceIP = args[1];
 		String port = args[2];
 		String mqttBroker = args[3];
-		
+
 		IDispositivo d = Dispositivo.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker);
-		
+
 		// Añadimos funciones al dispositivo
 		IFuncion f1 = Funcion.build("f1", FuncionStatus.OFF);
 		d.addFuncion(f1);
-		
+
 		IFuncion f2 = Funcion.build("f2", FuncionStatus.OFF);
 		d.addFuncion(f2);
 
@@ -34,6 +37,10 @@ public class DispositivoIniciador {
 		d.addFuncion(f3);
 		// Arrancamos el dispositivo
 		d.iniciar();
-}
+
+
+		new AWSIoTThingStarter();
+
+	}
 
 }
