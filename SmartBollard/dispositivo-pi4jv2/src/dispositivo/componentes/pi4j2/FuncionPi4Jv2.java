@@ -55,13 +55,35 @@ public class FuncionPi4Jv2 extends Funcion implements ISignallable {
 
 
 	}
-	
-	
-	
-	
-	
+	@Override
+	public IFuncion iniciar() {
+		this._putIntoInitialStatus();
+		return this;
+	}
+
+	protected IFuncion _putIntoInitialStatus() {
+		switch (this.initialStatus) {
+			case ON:
+				this.encender();
+				break;
+			case OFF:
+				this.apagar();
+				break;
+			case BLINK:
+				this.parpadear();
+				break;
+
+			default:
+				break;
+		}
+
+		return this;
+
+	}
+
 	@Override
 	public IFuncion encender() {
+		System.out.println("Encendiendo...en rasberry");
 		this.cancelBlinking();
 		super.encender();
 		this.pin.high();
@@ -72,6 +94,7 @@ public class FuncionPi4Jv2 extends Funcion implements ISignallable {
 
 	@Override
 	public IFuncion apagar() {
+		System.out.println("apagando...en rasberry");
 		this.cancelBlinking();
 		super.apagar();
 		this.pin.low();

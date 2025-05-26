@@ -39,15 +39,12 @@ public class SmartCar_RoadInfoSubscriber extends MyMqttClient {
             if (json.has("action") && json.getString("action").equals("SPEED_LIMIT")) {
 
                 int newLimit = json.getInt("speed-limit");
-                int currentSpeed = smartcar.getRoadCurrentSpeed();
 
-                int appliedSpeed = Math.min(newLimit, currentSpeed);
+
 
                 System.out.println("Recibido nuevo límite de velocidad:");
                 System.out.println("Límite propuesto por señal: " + newLimit + " km/h");
-                System.out.println("Velocidad actual en la vía: " + currentSpeed + " km/h");
-                System.out.println("Ajustando velocidad del vehículo a: " + appliedSpeed + " km/h\n");
-            }
+           }
 
             else if (json.has("action") && json.getString("action").equals("ACCIDENT")) {
                 System.out.println("Accidente detectado en el tramo " 

@@ -66,7 +66,7 @@ public class Bollard_APIMQTT implements MqttCallback{
             System.out.println("| Message: " + payload);
             System.out.println("-------------------------------------------------");
 
-            System.out.println("El coche esta en el roadsegment del SmartParking, y se dispone a aparcarlo, por lo que bajamos el pilo, luz roja");
+            System.out.println("El coche está en el roadsegment "+roadsegment+" del SmartParking, y se dispone a aparcarlo, por lo que bajamos el pilón, luz roja");
             IFuncion f1 = this.bollard.getFuncion("f1");
             IFuncion f2 = this.bollard.getFuncion("f2");
             IFuncion f3 = this.bollard.getFuncion("f3");
