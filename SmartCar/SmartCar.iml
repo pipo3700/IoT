@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/smartcar/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/aws-iot-device-sdk-java-1.3.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/org.restlet-3.0-M1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/org.apache.commons.codec_1.10.0.v20180409-1845.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/java-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/aws-iot-device-sdk-java-samples-1.3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.5-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/java-json.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
