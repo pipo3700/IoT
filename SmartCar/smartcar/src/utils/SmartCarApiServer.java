@@ -1,6 +1,6 @@
 package utils;
 
-import awsiotthing.liberarplazaAWS;
+import awsiotthing.publishAWS;
 import componentes.SmartCar;
 
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class SmartCarApiServer {
             res.type("application/json");
             String spotId = req.params(":spotId");
             String smartCarId = car.getSmartCarID(); // Puedes recibirlo por body o tenerlo fijo
-            new liberarplazaAWS(spotId, smartCarId);
+            new publishAWS(spotId, smartCarId, "free");
             car.publishVehicleOut();
             return "Plaza liberada";
         });
@@ -39,8 +39,8 @@ public class SmartCarApiServer {
 
             String spotId = req.params(":spotId");
             String smartCarId = car.getSmartCarID(); // Puedes recibirlo por body o tenerlo fijo
-
-            return ApiSmartParking.ocuparPlaza(spotId, smartCarId);
+            new publishAWS(spotId, smartCarId, "occupy");
+            return "Aparcado";
         });
 
         post("/smartcar/move/:roadSegment", (req, res) -> {
