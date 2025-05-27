@@ -1,4 +1,3 @@
-import awsiotthing.liberarplazaAWS;
 import componentes.SmartCar;
 import utils.SmartCarApiServer;
 

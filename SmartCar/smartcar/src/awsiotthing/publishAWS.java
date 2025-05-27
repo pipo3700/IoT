@@ -10,7 +10,7 @@ import utils.MySimpleLogger;
 
 import java.util.UUID;
 
-public class liberarplazaAWS {
+public class publishAWS {
     // valores por defecto de los parámetros de inicio
     protected static String clientEndpoint = "a10q4l8jmbuqc1-ats.iot.us-east-1.amazonaws.com";       // replace <prefix> and <region> with your own
     protected static String clientId = "IoTDeviceClient-SmartCar" + UUID.randomUUID().toString();                  // replace with your own client ID. Use unique client IDs for concurrent connections.
@@ -19,13 +19,18 @@ public class liberarplazaAWS {
     protected static String privateKeyFile = "smartcar/src/awscert/private.pem.key";
 
     protected static boolean publisher = true;
-    protected static String topic = "smartbollard/Bollard1/freed";
+    protected static String topic;
 
-    public liberarplazaAWS(String spotId, String smartCarId){
+    public publishAWS(String spotId, String smartCarId, String Action){
         String payload = String.format(
                 "{ \"spotId\": \"%s\", \"vehicleId\": \"%s\" }",
                 spotId, smartCarId
         );
+        if (Action.equals("free")) {
+             topic = "smartbollard/"+spotId+"/freed";
+        } else if (Action.equals("occupy")) {
+             topic = "smartbollard/"+spotId+"/occupied";
+        }
         AWSIotMqttClient client = initClient();
         // CONNECT CLIENT TO AWS IOT MQTT
         // optional parameters can be set before connect()
