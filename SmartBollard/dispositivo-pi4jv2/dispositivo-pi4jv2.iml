@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="dispositivo" />
-    <orderEntry type="module-library">
+    <orderEntry type="module" module-name="dispositivo" exported="" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/slf4j-simple.jar!/" />
@@ -24,5 +24,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="lib" level="project" />
   </component>
 </module>

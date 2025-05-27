@@ -9,6 +9,7 @@ import dispositivo.componentes.Dispositivo;
 import dispositivo.componentes.pi4j2.FuncionPi4Jv2;
 import dispositivo.interfaces.FuncionStatus;
 import dispositivo.interfaces.IDispositivo;
+import dispositivo.utils.ApiSmartParking;
 
 public class DispositivoIniciadorPi4Jv2 {
 
@@ -24,8 +25,8 @@ public class DispositivoIniciadorPi4Jv2 {
 		String deviceIP = args[1];
 		String port = args[2];
 		String mqttBroker = args[3];
-		
-
+		System.out.println("Si le llegan los cambios");
+		ApiSmartParking.darAltaBolardo("R5s1", "Bolardo1");
 		// Configuramos el contexto/plataforma del GPIO de la Raspberry
 		Context pi4jContext =  Pi4J.newAutoContext();
 		//Platforms platforms = pi4jContext.platforms();
