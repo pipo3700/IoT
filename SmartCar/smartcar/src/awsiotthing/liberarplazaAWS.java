@@ -6,24 +6,26 @@ import com.amazonaws.services.iot.client.AWSIotMqttClient;
 import com.amazonaws.services.iot.client.AWSIotQos;
 import com.amazonaws.services.iot.client.sample.sampleUtil.SampleUtil;
 import com.amazonaws.services.iot.client.sample.sampleUtil.SampleUtil.KeyStorePasswordPair;
-import org.json.JSONObject;
 import utils.MySimpleLogger;
 
 import java.util.UUID;
 
-public class AWSIoTThingStarter {
+public class liberarplazaAWS {
     // valores por defecto de los parámetros de inicio
     protected static String clientEndpoint = "a10q4l8jmbuqc1-ats.iot.us-east-1.amazonaws.com";       // replace <prefix> and <region> with your own
     protected static String clientId = "IoTDeviceClient-SmartCar" + UUID.randomUUID().toString();                  // replace with your own client ID. Use unique client IDs for concurrent connections.
 
     protected static String certificateFile = "smartcar/src/awscert/certificate.pem.crt";               // X.509 based certificate file
-    protected static String privateKeyFile = "smartcar/src/awscert//private.pem.key";
+    protected static String privateKeyFile = "smartcar/src/awscert/private.pem.key";
 
     protected static boolean publisher = true;
-    protected static String topic = "smartbollard/";
-    protected static String payload = "{\"plaza\": \"liberada\"}";
+    protected static String topic = "smartbollard/Bollard1/freed";
 
-    public AWSIoTThingStarter(){
+    public liberarplazaAWS(String spotId, String smartCarId){
+        String payload = String.format(
+                "{ \"spotId\": \"%s\", \"vehicleId\": \"%s\" }",
+                spotId, smartCarId
+        );
         AWSIotMqttClient client = initClient();
         // CONNECT CLIENT TO AWS IOT MQTT
         // optional parameters can be set before connect()

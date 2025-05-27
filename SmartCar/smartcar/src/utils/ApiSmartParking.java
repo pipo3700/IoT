@@ -11,60 +11,8 @@ import org.json.JSONObject;
 
 public class ApiSmartParking {
 
-    private static final String ENDPOINT_CONSULTA = "http://localhost:8080/plazas";
     private static final String ENDPOINT_RESERVA = "http://localhost:8080/plazas/reserve";
-
-    public static void consultaPlazas(String roadSegment, String smartCarId) {
-        try {
-            URL url = new URL(ENDPOINT_CONSULTA);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            // Configurar la solicitud POST
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setDoOutput(true);
-
-            // Construir el JSON de consulta
-            String jsonInputString = "{\"roadSegment\": \"" + roadSegment + "\"}";
-
-            try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            int status = conn.getResponseCode();
-            InputStream is = (status >= 200 && status < 300) ? conn.getInputStream() : conn.getErrorStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
-
-            StringBuilder responseBuilder = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                responseBuilder.append(line.trim());
-            }
-
-            conn.disconnect();
-
-            JSONObject responseJson = new JSONObject(responseBuilder.toString());
-            JSONObject spot = responseJson.getJSONObject("spot");
-
-            String state = spot.getString("state");
-            boolean free = spot.getBoolean("free");
-            String spotId = spot.getString("id");
-
-            System.out.println("Respuesta JSON formateada:\n" + responseJson.toString(4));
-
-            if ("FREE".equalsIgnoreCase(state) && free) {
-                System.out.println("La plaza está libre. Procediendo a reservar...");
-                String reservaResponse = reservaPlaza(spotId, smartCarId);
-                System.out.println(reservaResponse);
-            } else {
-                System.out.println("La plaza no está disponible para reservar.");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error en consultaPlazas: " + e.getMessage());
-        }
-    }
+    private static final String ENDPOINT_PLAZASDISPONIBLES = "http://localhost:8080/plazas/R5s1";
 
     public static String reservaPlaza(String spotId, String smartCarId) {
         try {
@@ -104,4 +52,37 @@ public class ApiSmartParking {
             return "Error en reservaPlaza: " + e.getMessage();
         }
     }
+    public static String verplazasdisponibles() {
+        try {
+            URL url = new URL(ENDPOINT_PLAZASDISPONIBLES);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            int status = conn.getResponseCode();
+            InputStream is = (status >= 200 && status < 300) ? conn.getInputStream() : conn.getErrorStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
+
+            StringBuilder responseBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                responseBuilder.append(line.trim());
+            }
+
+            conn.disconnect();
+
+            // Parsear la respuesta como JSON
+            JSONObject jsonResponse = new JSONObject(responseBuilder.toString());
+
+            // Imprimir el JSON formateado
+            System.out.println("Plazas disponibles (formato JSON):\n" + jsonResponse.toString(4));
+
+            return jsonResponse.toString(4);
+
+        } catch (Exception e) {
+            return "Error en verplazasdisponibles: " + e.getMessage();
+        }
+    }
+
 }

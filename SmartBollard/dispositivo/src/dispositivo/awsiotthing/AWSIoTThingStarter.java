@@ -20,7 +20,8 @@ public class AWSIoTThingStarter {
     protected static String privateKeyFile = "dispositivo/src/dispositivo/awscertificates/private.pem.key";
 
     protected static boolean subscriber = true;
-    protected static String topic = "parking/";
+    protected static String topicreserva = "smartbollard/Bollard1/command/reserve";
+    protected static String topicfree = "smartbollard/Bollard1/freed";
 
     public AWSIoTThingStarter(Bollard bollard){
         AWSIotMqttClient client = initClient();
@@ -37,7 +38,8 @@ public class AWSIoTThingStarter {
         }
         // SUBSCRIBE to a TOPIC
         if ( subscriber ) {
-            subscribe(client, topic, qos, bollard);
+            subscribe(client, topicreserva, qos, bollard);
+            subscribe2(client, topicfree, qos, bollard);
         }
     }
 
@@ -52,7 +54,18 @@ public class AWSIoTThingStarter {
     }
 
     public static void subscribe(AWSIotMqttClient client, String topic, AWSIotQos qos, Bollard bollard) {
-        AWSIoT_TopicHandler theTopic = new AWSIoT_TopicHandler(topic, qos, bollard);
+        AWSIoT_TopicHandler_reserva theTopic = new AWSIoT_TopicHandler_reserva(topic, qos, bollard);
+        try {
+            client.subscribe(theTopic);
+            MySimpleLogger.info("my-aws-iot-thing", "... SUBSCRIBED to TOPIC: " + topic);
+        } catch (AWSIotException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+    public static void subscribe2(AWSIotMqttClient client, String topic, AWSIotQos qos, Bollard bollard) {
+        AWSIoT_TopicHandler_free theTopic = new AWSIoT_TopicHandler_free(topic, qos, bollard);
         try {
             client.subscribe(theTopic);
             MySimpleLogger.info("my-aws-iot-thing", "... SUBSCRIBED to TOPIC: " + topic);
