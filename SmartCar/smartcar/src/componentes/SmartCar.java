@@ -13,7 +13,7 @@ public class SmartCar {
         this.setSmartCarID(id);
         this.brokerURL = brokerURL;
 
-        this.setCurrentRoadPlace(new RoadPlace("R5s1", 0));
+        this.setCurrentRoadPlace(new RoadPlace("R6s1", 0));
 
         this.notifier = new SmartCar_InicidentNotifier(id + ".incident-notifier", this, this.brokerURL);
         this.notifier.connect();

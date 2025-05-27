@@ -15,6 +15,7 @@ public class SmartCarStarterApp {
 
         // Crear e iniciar el vehículo
         SmartCar car = new SmartCar(SmartCarId, brokerURL);
+        car.publishVehicleIn();
         // Llamada para arrancar la API REST
         SmartCarApiServer.startApi(car);
 
