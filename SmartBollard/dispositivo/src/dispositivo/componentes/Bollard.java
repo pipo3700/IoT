@@ -13,16 +13,18 @@ import java.util.Map;
 
 public class Bollard implements IBollard{
     protected String deviceId = null;
+    protected String deviceName = null;
     protected Bollard_APIMQTT subscriber = null;
     protected Map<String, IFuncion> functions = null;
 
-    public static Bollard build(String deviceId, String ip, int port, String mqttBrokerURL) {
-        Bollard bollard = new Bollard(deviceId);
+    public static Bollard build(String deviceId, String ip, int port, String mqttBrokerURL, String deviceName) {
+        Bollard bollard = new Bollard(deviceId, deviceName);
         bollard.subscriber = Bollard_APIMQTT.build(bollard, deviceId, ip, mqttBrokerURL);
         return bollard;
     }
-    protected Bollard(String deviceId) {
+    protected Bollard(String deviceId, String deviceName) {
         this.deviceId = deviceId;
+        this.deviceName = deviceName;
     }
     protected Map<String, IFuncion> getFunctions() {
         return this.functions;
@@ -31,7 +33,9 @@ public class Bollard implements IBollard{
         this.functions = fs;
     }
 
-
+    public String getId() {
+        return deviceName;
+    }
     @Override
     public IBollard iniciarBollard() {
         for(IFuncion f : this.getFunciones()) {

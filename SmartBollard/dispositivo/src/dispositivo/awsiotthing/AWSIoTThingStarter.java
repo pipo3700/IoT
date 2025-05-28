@@ -20,10 +20,12 @@ public class AWSIoTThingStarter {
     protected static String privateKeyFile = "dispositivo/src/dispositivo/awscertificates/private.pem.key";
 
     protected static boolean subscriber = true;
-    protected static String topicreserva = "smartbollard/Bollard1/command/reserve";
-    protected static String topicfree = "smartbollard/Bollard1/freed";
+    protected static String topicreserva;
+    protected static String topicfree;
 
     public AWSIoTThingStarter(Bollard bollard){
+        topicreserva = "smartbollard/"+bollard.getId()+"/command/reserve";
+        topicfree = "smartbollard/"+bollard.getId()+"/freed";
         AWSIotMqttClient client = initClient();
         // CONNECT CLIENT TO AWS IOT MQTT
         // optional parameters can be set before connect()
