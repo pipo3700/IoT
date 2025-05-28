@@ -13,8 +13,9 @@
                 "ttmi050",
                 "ttmi050.iot.upv.es",
                 8182,
-                "tcp://tambori.dsic.upv.es:1883"]
+                "tcp://tambori.dsic.upv.es:188"]
         },
+        
         {
             "type": "java",
             "name": "DispositivoPi4Jv2",
