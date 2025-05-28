@@ -25,8 +25,9 @@ public class DispositivoIniciadorPi4Jv2 {
 		String deviceIP = args[1];
 		String port = args[2];
 		String mqttBroker = args[3];
+		String deviceName = "Bollard1";
 		System.out.println("Si le llegan los cambios");
-		ApiSmartParking.darAltaBolardo("R5s1", "Bolardo1");
+		ApiSmartParking.darAltaBolardo("R5s1", deviceName);
 		// Configuramos el contexto/plataforma del GPIO de la Raspberry
 		Context pi4jContext =  Pi4J.newAutoContext();
 		//Platforms platforms = pi4jContext.platforms();
@@ -41,7 +42,7 @@ public class DispositivoIniciadorPi4Jv2 {
 		// f3 - GPIO_13 luz verde
 		FuncionPi4Jv2 f3 = FuncionPi4Jv2.build("f3", 15, FuncionStatus.ON, pi4jContext);
 
-		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker);
+		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker, deviceName);
 		bollard.addFuncion(f1); //luz roja
 		bollard.addFuncion(f2); //luz amarilla
 		bollard.addFuncion(f3); //luz verde

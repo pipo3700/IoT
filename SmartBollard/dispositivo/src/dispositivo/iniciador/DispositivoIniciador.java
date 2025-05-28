@@ -25,7 +25,8 @@ public class DispositivoIniciador {
 		String deviceIP = args[1];
 		String port = args[2];
 		String mqttBroker = args[3];
-		ApiSmartParking.darAltaBolardo("R5s1", "Bollard1");
+		String deviceName = "Bollard1";
+		ApiSmartParking.darAltaBolardo("R5s1", deviceName);
 
 		// Añadimos funciones al dispositivo
 		IFuncion f1 = Funcion.build("f1", FuncionStatus.OFF);
@@ -34,7 +35,7 @@ public class DispositivoIniciador {
 
 		IFuncion f3 = Funcion.build("f3", FuncionStatus.ON);
 
-		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker);
+		Bollard bollard = Bollard.build(deviceId, deviceIP, Integer.valueOf(port), mqttBroker, deviceName);
 		bollard.addFuncion(f1); //luz roja
 		bollard.addFuncion(f2); //luz amarilla
 		bollard.addFuncion(f3); //luz verde
