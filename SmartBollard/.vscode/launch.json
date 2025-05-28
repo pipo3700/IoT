@@ -13,7 +13,7 @@
                 "ttmi050",
                 "ttmi050.iot.upv.es",
                 8182,
-                "tcp://mqttserver:1883"]
+                "tcp://tambori.dsic.upv.es:1883"]
         },
         {
             "type": "java",
@@ -24,7 +24,7 @@
                 "ttmi050",
                 "ttmi050.iot.upv.es",
                 8182,
-                "tcp://mqttserver:1883"]
+                "tcp://tambori.dsic.upv.es:1883"]
         }
     ]
 }
