@@ -88,7 +88,7 @@ public class AWSIoTThingStarter {
 
     public static void publish(AWSIotMqttClient client, String topic, AWSIotQos qos, Bollard bollard) {
         try {
-            String payload = String.format("{ \"roadSegment\": \"%s\", \"id\": \"%s\" }", "R5s1", bollard.getId());
+            String payload = String.format("{ \"roadSegment\": \"%s\", \"spotId\": \"%s\" }", "R5s1", bollard.getId());
             AWSIotMessage message = new AWSIotMessage(topic, qos, payload);
             client.publish(message);
             MySimpleLogger.info("my-aws-iot-thing", "... PUBLISHED message " + payload + " to TOPIC: " + topic);
