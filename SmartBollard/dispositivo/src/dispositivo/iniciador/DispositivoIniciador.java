@@ -17,7 +17,7 @@ public class DispositivoIniciador {
 		
 		if ( args.length < 4 ) {
 			System.out.println("Usage: java -jar dispositivo.jar device deviceIP rest-port mqttBroker");
-			System.out.println("Example: java -jar dispositivo.jar ttmi050 ttmi050.iot.upv.es 8182 tcp://ttmi008.iot.upv.es:1883");
+			System.out.println("Example: java -jar dispositivo.jar ttmi055 ttmi055.iot.upv.es 8182 tcp://tambori.dsic.upv.es:1883");
 			return;
 		}
 
@@ -26,7 +26,7 @@ public class DispositivoIniciador {
 		String port = args[2];
 		String mqttBroker = args[3];
 		String deviceName = "Bollard1";
-		ApiSmartParking.darAltaBolardo("R5s1", deviceName);
+		//ApiSmartParking.darAltaBolardo("R5s1", deviceName);
 
 		// Añadimos funciones al dispositivo
 		IFuncion f1 = Funcion.build("f1", FuncionStatus.OFF);
