@@ -2,6 +2,7 @@ package dispositivo.awsiotthing;
 
 import java.util.UUID;
 
+import com.amazonaws.services.iot.client.AWSIotMessage;
 import dispositivo.componentes.Bollard;
 import dispositivo.utils.MySimpleLogger;
 
@@ -20,12 +21,15 @@ public class AWSIoTThingStarter {
     protected static String privateKeyFile = "dispositivo/src/dispositivo/awscertificates/private.pem.key";
 
     protected static boolean subscriber = true;
+    protected static boolean publisher = true;
     protected static String topicreserva;
     protected static String topicfree;
+    protected static String topicregister;
 
     public AWSIoTThingStarter(Bollard bollard){
         topicreserva = "smartbollard/"+bollard.getId()+"/command/reserve";
         topicfree = "smartbollard/"+bollard.getId()+"/freed";
+        topicregister = "smartbollard/"+bollard.getId()+"/register";
         AWSIotMqttClient client = initClient();
         // CONNECT CLIENT TO AWS IOT MQTT
         // optional parameters can be set before connect()
@@ -42,6 +46,10 @@ public class AWSIoTThingStarter {
         if ( subscriber ) {
             subscribe(client, topicreserva, qos, bollard);
             subscribe2(client, topicfree, qos, bollard);
+        }
+
+        if ( publisher ) {
+            publish(client, topicregister, qos, bollard);
         }
     }
 
@@ -76,6 +84,17 @@ public class AWSIoTThingStarter {
             e.printStackTrace();
         }
 
+    }
+
+    public static void publish(AWSIotMqttClient client, String topic, AWSIotQos qos, Bollard bollard) {
+        try {
+            String payload = String.format("{ \"roadSegment\": \"%s\", \"id\": \"%s\" }", "R5s1", bollard.getId());
+            AWSIotMessage message = new AWSIotMessage(topic, qos, payload);
+            client.publish(message);
+            MySimpleLogger.info("my-aws-iot-thing", "... PUBLISHED message " + payload + " to TOPIC: " + topic);
+        } catch (AWSIotException e) {
+            e.printStackTrace();
+        }
     }
 
 }

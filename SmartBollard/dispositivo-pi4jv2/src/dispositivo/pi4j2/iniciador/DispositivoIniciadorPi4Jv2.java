@@ -27,7 +27,6 @@ public class DispositivoIniciadorPi4Jv2 {
 		String mqttBroker = args[3];
 		String deviceName = "Bollard1";
 		System.out.println("Si le llegan los cambios");
-		ApiSmartParking.darAltaBolardo("R5s1", deviceName);
 		// Configuramos el contexto/plataforma del GPIO de la Raspberry
 		Context pi4jContext =  Pi4J.newAutoContext();
 		//Platforms platforms = pi4jContext.platforms();

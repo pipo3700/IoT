@@ -26,7 +26,7 @@ public class DispositivoIniciador {
 		String port = args[2];
 		String mqttBroker = args[3];
 		String deviceName = "Bollard1";
-		ApiSmartParking.darAltaBolardo("R5s1", deviceName);
+		//ApiSmartParking.darAltaBolardo("R5s1", deviceName);
 
 		// Añadimos funciones al dispositivo
 		IFuncion f1 = Funcion.build("f1", FuncionStatus.OFF);
